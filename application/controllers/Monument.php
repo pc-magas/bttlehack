@@ -17,8 +17,8 @@ class Monument extends CI_Controller
 		$lon=$this->input->post('lon');//Lontitude
 		$lat=$this->input->post('lat');///Latitude
 		
-		$status;
-		
+		$status="";
+		$data=null;
 		if($lon!==false && $lat!==false)
 		{
 			$data=$this->monument_model->fetch_by_location($lon,$lat);
@@ -30,5 +30,6 @@ class Monument extends CI_Controller
 			$status=0;
 			$message="No location given";
 		}
+		$this->load->view('json_view.php',array('status'=>$status,'message'=>$message,'data'=>$data));
 	}
 }

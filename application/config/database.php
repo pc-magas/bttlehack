@@ -61,7 +61,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $active_group = 'default';
 $query_builder = TRUE;
-var_dump(getenv('OPENSHIFT_DB_HOST'));
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => getenv('OPENSHIFT_DB_HOST'),

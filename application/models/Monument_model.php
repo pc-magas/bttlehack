@@ -27,7 +27,7 @@ class Monument_model extends CI_Model
 				->from('`monument`')
 				->where("(`latitude` BETWEEN ".$lat1." AND ".$lat2.")")
 				->where("(`longitude` BETWEEN ".$lon1." AND ".$lon2.")");
-				
-		return	$q->get()->result_array();
+			$data=$q->get()->result_array();
+		return	$data;
 	}
 }
