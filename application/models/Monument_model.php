@@ -5,6 +5,7 @@ class Monument_model extends CI_Model
 {
 	function __construct()
 	{
+		parent::__construct();
 		$this->load->database();
 	}
 	/**
@@ -14,13 +15,16 @@ class Monument_model extends CI_Model
 	 */
 	function fetch_by_location($lon,$lat)
 	{
-		$long1=floatval($long1)-LONGITUDE_THRESHOLD;
-		$lat1=floatval($lat1)-LATITUDE_THRESHOLD;
-		$long2=floatval($long2)+LONGITUDE_THRESHOLD;
-		$lat2=floatval($lat2)+LATITUDE_THRESHOLD;
+		$lon=floatval($lon);
+		$lat=floatval($lat);
+		
+		$lon1=$lon-LONGITUDE_THRESHOLD;
+		$lat1=$lat-LATITUDE_THRESHOLD;
+		$lon2=$lon+LONGITUDE_THRESHOLD;
+		$lat2=$lat+LATITUDE_THRESHOLD;
 		
 		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`")
-				->from('`monuments`')
+				->from('`monument`')
 				->where("(`latitude` BETWEEN ".$lat1." AND ".$lat2.")")
 				->where("(`longitude` BETWEEN ".$lon1." AND ".$lon2.")");
 				

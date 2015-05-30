@@ -4,9 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Monument extends CI_Controller
 {
 	function __construct()
-	{
-		$this->load->model('Monument_model');
-
+	{	
+    	parent::__construct();
+		$this->load->model('monument_model');
 	}
 	
 	/**
