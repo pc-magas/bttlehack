@@ -12,7 +12,7 @@ class Organization_model  extends CI_Model
 	function fetch_all()
 	{
 		$q=$this->db->select('*')->from('organization')->order_by('title');
-		$data=$q->get()->fetch_all();
+		$data=$q->get()->result_array();
 		return $data; 
 	}
 }
