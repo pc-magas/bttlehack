@@ -64,10 +64,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => get_env('OPENSHIFT_DB_HOST'),
+	'username' => get_env('OPENSHIFT_DB_USERNAME'),
+	'password' => get_env('OPENSHIFT_DB_PASSWORD'),
+	'database' => get_env('OPENSHIFT_APP_NAME'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
