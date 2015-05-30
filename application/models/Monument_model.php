@@ -12,6 +12,7 @@ class Monument_model extends CI_Model
 	 * Fetch monuments whithin a  specified region
 	 * @param $lon The Longitude froom GPS
 	 * @param $lan The gps latitude
+	 * @return array the monnuments
 	 */
 	function fetch_by_location($lon,$lat)
 	{
@@ -28,6 +29,20 @@ class Monument_model extends CI_Model
 				->where("(`latitude` BETWEEN ".$lat1." AND ".$lat2.")")
 				->where("(`longitude` BETWEEN ".$lon1." AND ".$lon2.")");
 			$data=$q->get()->result_array();
+		return	$data;
+	}
+	
+	/**
+	 * Fetch monuments with an id given
+	 * @param $id the id oof the monnument
+	 * @return array the monnuments
+	 */
+	function fetch_by_id($id)
+	{
+		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`")
+				->from('`monument`')
+				->where("`id`",$id);
+		$data=$q->get()->result_array();
 		return	$data;
 	}
 }

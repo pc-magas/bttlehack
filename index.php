@@ -1,4 +1,19 @@
 <?php
+
+/**
+  Handle cross domain post requests
+*/
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Content-Type");
+header('Access-Control-Allow-Methods: GET, POST');
+
+//transform from JSON to standard URL encoding (compatibility with Angular $http post)
+if (!isset($_POST) || $_POST == null)
+  $_POST = json_decode(file_get_contents("php://input"),true);
+
+//set default timezone
+date_default_timezone_set("Europe/Athens");
+
 /**
  * CodeIgniter
  *
