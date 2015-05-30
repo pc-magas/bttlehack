@@ -24,7 +24,7 @@ class Monument_model extends CI_Model
 		$lon2=$lon+LONGITUDE_THRESHOLD;
 		$lat2=$lat+LATITUDE_THRESHOLD;
 		
-		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`,`short_description`")
+		$q=$this->db->select("*")
 				->from('`monument`')
 				->where("(`latitude` BETWEEN ".$lat1." AND ".$lat2.")")
 				->where("(`longitude` BETWEEN ".$lon1." AND ".$lon2.")");
@@ -39,7 +39,7 @@ class Monument_model extends CI_Model
 	 */
 	function fetch_by_id($id)
 	{
-		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`,`short_description`")
+		$q=$this->db->select("*")
 				->from('`monument`')->where("`id`",$id);
 		$data=$q->get()->result_array();
 		return	$data;
