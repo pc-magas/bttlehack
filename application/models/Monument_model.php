@@ -40,8 +40,7 @@ class Monument_model extends CI_Model
 	function fetch_by_id($id)
 	{
 		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`")
-				->from('`monument`')
-				->where("`id`",$id);
+				->from('`monument`')->where("`id`",$id);
 		$data=$q->get()->result_array();
 		return	$data;
 	}

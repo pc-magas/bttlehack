@@ -46,8 +46,7 @@ class Monument extends CI_Controller
 		if($id!==false)
 		{
 			$data=$this->monument_model->fetch_by_id($id);
-			$status="";
-			$data=null;
+			$status=1;
 		}
 		else 
 		{
