@@ -58,14 +58,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | The $query_builder variables lets you determine whether or not to load
 | the query builder class.
 */
-
+var_dump(getenv('OPENSHIFT_DB_HOST'));
 $active_group = 'default';
 $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => getenv('OPENSHIFT_DB_HOST'),
-	'username' => getenv('OPENSHIFT_DB_USERNAME'),
-	'password' => getenv('OPENSHIFT_DB_PASSWORD'),
+	'hostname' => getenv('OPENSHIFT_MYSQL_HOST'),
+	'username' => getenv('OPENSHIFT_MYSQL_USERNAME'),
+	'password' => getenv('OPENSHIFT_MYSQL_PASSWORD'),
 	'database' => getenv('OPENSHIFT_APP_NAME'),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
