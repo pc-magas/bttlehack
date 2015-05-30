@@ -14,10 +14,18 @@ class Donation extends CI_Controller
 		$data=null;
 		$nonce=$this->input->post('payment_method_nonce');
 		$id=12;//$this->input->post('id');
-		if($nonce!==false && $id!==false)
+		echo "Noonce";
+		var_dump($nonce);
+		if(!empty($nonce) && !empty($id))
 		{
 			$data['token']=$this->donation_model->donate_to($id,$nonce);
 			echo $data['token'];
+		}
+		elseif(!emppty($id))
+		{
+			echo "Here";
+			$data['token']=$this->donation_model->donate_to($id);
+			$this->load->view('development_form.php',array('client_token'=>$data['token']));
 		}
 	}
 }

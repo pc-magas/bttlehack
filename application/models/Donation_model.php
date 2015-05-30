@@ -8,20 +8,26 @@ class Donation_model extends CI_Model
 		parent::__construct();
 		$this->load->database();
 		
-
 	}
-	
-	function donate_to($id,$payment_nonce)
-	{
-		
+	function donate_to($id,$payment_nonce=null)
+	{		
 		Braintree_Configuration::environment('sandbox');
 		Braintree_Configuration::merchantId('zx48kk39ysdqgr22');
 		Braintree_Configuration::publicKey('bxjcny7pt2cq2jtb');
 		Braintree_Configuration::privateKey('8dcaa4201c8115f4c6714d9c699e8e55');
 		
-		$clientToken = Braintree_ClientToken::generate(array("customerId" => $payment_nonce));
-		var_dump($id,$payment_nonce);
-		return $clientToken;
-		
+		if(empty($payment_nonce))
+		{
+			$clientToken = Braintree_ClientToken::generate();
+			return $clientToken;
+		}
+		else 
+		{
+			Braintree_Transaction::sale(array(
+				'amount'=>"$1.00",
+				'paymentMethodNonce'=>$payment_nonce
+			));
+			echo "Paid";
+		}
 	}
 }
