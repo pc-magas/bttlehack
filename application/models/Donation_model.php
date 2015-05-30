@@ -10,7 +10,11 @@ class Donation_model extends CI_Model
 		
 	}
 	function donate_to($id,$payment_nonce=null)
-	{		
+	{
+		$ci=&get_instance();
+		$ci->load->model('organization_model');
+		$data=$ci->organization_model->fetch_organization_by_id($id);
+		//var_dump($data);
 		Braintree_Configuration::environment('sandbox');
 		Braintree_Configuration::merchantId('zx48kk39ysdqgr22');
 		Braintree_Configuration::publicKey('bxjcny7pt2cq2jtb');
@@ -27,7 +31,6 @@ class Donation_model extends CI_Model
 				'amount'=>"$1.00",
 				'paymentMethodNonce'=>$payment_nonce
 			));
-			echo "Paid";
 		}
 	}
 }

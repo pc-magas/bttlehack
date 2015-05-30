@@ -15,4 +15,11 @@ class Organization_model  extends CI_Model
 		$data=$q->get()->result_array();
 		return $data; 
 	}
+	
+	function fetch_organization_by_id($id)
+	{
+		$q=$this->db->select('*')->from('organization')->where('`id`',$id)->order_by('title');
+		$data=$q->get()->result_array();
+		return $data;
+	}
 }
