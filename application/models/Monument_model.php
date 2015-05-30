@@ -21,8 +21,8 @@ class Monument_model extends CI_Model
 		
 		$q=$this->db->select("`id`,`latitude`,`longitude`,`title`,`meta`,`avatar`")
 				->from('`monuments`')
-				->where("(`latitude` BETWEEN ".min($lat2,$lat1)." AND ".max($lat2,$lat1).")")
-				->where("(`longitude` BETWEEN ".min($lon2,$lon1)." AND ".max($lon2,$lon1).")");
+				->where("(`latitude` BETWEEN ".$lat1." AND ".$lat2.")")
+				->where("(`longitude` BETWEEN ".$lon1." AND ".$lon2.")");
 				
 		return	$q->get()->result_array();
 	}
