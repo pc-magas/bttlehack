@@ -1,6 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ *         DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
+
+ Copyright (C) Desyllas Dimitrios 
+
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
+
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
+
+  0. You just DO WHAT THE FUCK YOU WANT TO.
+ */
 class Donation extends CI_Controller
 {
 	function __construct()
@@ -19,7 +34,7 @@ class Donation extends CI_Controller
 		{
 			//Here we get somehow the id
 			$this->donation_model->donate_to($oid,$mid,$nonce);
-			echo "$state.go('monument/list');";		
+			echo "\$state.go('monument/list');";		
 		}
 		elseif(!empty($oid)&&!empty($mid))
 		{
