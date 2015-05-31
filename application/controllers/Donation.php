@@ -19,7 +19,7 @@ class Donation extends CI_Controller
 		{
 			//Here we get somehow the id
 			$this->donation_model->donate_to($oid,$mid,$nonce);
-			$this->load->view('json_view.php',array('status'=>1));
+			echo "$state.go('monument/list');";		
 		}
 		elseif(!empty($oid)&&!empty($mid))
 		{
