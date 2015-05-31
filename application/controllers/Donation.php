@@ -34,7 +34,7 @@ class Donation extends CI_Controller
 		{
 			//Here we get somehow the id
 			$this->donation_model->donate_to($oid,$mid,$nonce);
-			echo "\$state.go('monument/list');";		
+			$this->load->view('redirect.php');
 		}
 		elseif(!empty($oid)&&!empty($mid))
 		{
