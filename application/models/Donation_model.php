@@ -9,16 +9,17 @@ class Donation_model extends CI_Model
 		$this->load->database();
 		
 	}
-	function donate_to($id,$payment_nonce=null)
+	function donate_to($id,$org_id,$payment_nonce=null)
 	{
 		$ci=&get_instance();
 		$ci->load->model('organization_model');
 		$data=$ci->organization_model->fetch_organization_by_id($id);
-		//var_dump($data);
+		$data=$data[0];
+
 		Braintree_Configuration::environment('sandbox');
-		Braintree_Configuration::merchantId('zx48kk39ysdqgr22');
-		Braintree_Configuration::publicKey('bxjcny7pt2cq2jtb');
-		Braintree_Configuration::privateKey('8dcaa4201c8115f4c6714d9c699e8e55');
+		Braintree_Configuration::merchantId($data['merchand_id']);
+		Braintree_Configuration::publicKey($data['public_key']);
+		Braintree_Configuration::privateKey($data['private_key']);
 		
 		if(empty($payment_nonce))
 		{
@@ -31,6 +32,23 @@ class Donation_model extends CI_Model
 				'amount'=>"$1.00",
 				'paymentMethodNonce'=>$payment_nonce
 			));
+			
+			$this->db->trans_start();
+			$this->db->set('monnument_id',$id);
+			$this->db->set('organization_id',$org_id);
+			$this->db->insert('`donation`');
+			$this->db->trans_complete();
+
+			if ($this->db->trans_status() === FALSE)
+			{
+				$this->db->trans_rollback();
+				return false;
+			}
+			else 
+			{
+				$this->db->trans_commit();
+				return true;
+			}
 		}
 	}
 }
