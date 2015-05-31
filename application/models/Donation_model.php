@@ -9,6 +9,10 @@ class Donation_model extends CI_Model
 		$this->load->database();
 		
 	}
+	
+	/**
+	 * Function that does the donnations
+	 */
 	function donate_to($id,$org_id,$payment_nonce=null)
 	{
 		$ci=&get_instance();
@@ -50,5 +54,14 @@ class Donation_model extends CI_Model
 				return true;
 			}
 		}
+	}
+	/**
+	 * Counts how many donations we have for an organization donated
+	 */	
+	function count_donations($id)
+	{
+		$this->db->select('SUM(`id`) as `donations`')->from('`donation`')->where('organization_id',$id);
+		$data=$this->db->get()->result_array();
+		return $data;
 	}
 }

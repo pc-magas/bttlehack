@@ -28,4 +28,23 @@ class Donation extends CI_Controller
 			$this->load->view('json_view.php',array('status'=>1,'data'=>$token));
 		}
 	}
+	
+	function count_donations()
+	{
+		$data=null;
+		$status=0;
+		$message=null;
+		$id=$this->input->post('id');
+		if(isset($id))
+		{
+			$status=1;
+			$data=$this->donation_model->count_donations($id);
+		} 
+		else
+		{
+			$message="No organization given";
+		}
+		
+		$this->load->view('json_view.php',array('status'=>1,'data'=>$data,'message'=>$message));
+	}
 }
